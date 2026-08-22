@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Search · JNU Student Daily</title>
+  <meta name="description" content="Search articles, events, notices, opportunities and campus issues across JNU Student Daily."/>
+  <link rel="canonical" href="https://your-domain.example/search.html"/>
+  <meta name="robots" content="noindex"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body data-page="search">
+  <header id="site-header"></header>
+
+  <main>
+    <section class="section">
+      <div class="wrap" style="max-width:820px">
+        <div class="section__head">
+          <h1 class="section__title">Search<span class="spine-dot">.</span></h1>
+          <span class="section__more" id="searchCount"></span>
+        </div>
+        <div class="field">
+          <input id="pageSearchInput" type="search" placeholder="Search articles, events, notices, opportunities, issues…"
+                 aria-label="Search" autocomplete="off"
+                 style="font-family:var(--display);font-size:1.15rem;padding:16px 18px"/>
+        </div>
+        <div class="filters" id="search-filters" role="group" aria-label="Filter results by type">
+          <button class="filter" data-kind="all" aria-pressed="true">All</button>
+          <button class="filter" data-kind="Article" aria-pressed="false">Articles</button>
+          <button class="filter" data-kind="Event" aria-pressed="false">Events</button>
+          <button class="filter" data-kind="Notice" aria-pressed="false">Notices</button>
+          <button class="filter" data-kind="Opportunity" aria-pressed="false">Opportunities</button>
+          <button class="filter" data-kind="Issue" aria-pressed="false">Issues</button>
+        </div>
+        <div class="search-results" id="pageSearchResults" style="border:1px solid var(--line);border-radius:var(--radius)"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

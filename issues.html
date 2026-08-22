@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Campus Issues · JNU Student Daily</title>
+  <meta name="description" content="Report a campus issue anonymously and track it from Reported to Resolved. Hostel, mess, academic, infrastructure, scholarship, library and transport concerns."/>
+  <link rel="canonical" href="https://your-domain.example/issues.html"/>
+  <meta property="og:title" content="Campus Issues · JNU Student Daily"/>
+  <meta property="og:description" content="Report and track campus issues at JNU."/>
+  <meta property="og:type" content="website"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body data-page="issues">
+  <header id="site-header"></header>
+
+  <main>
+    <!-- REPORT FORM -->
+    <section class="section" id="report">
+      <div class="wrap">
+        <div class="section__head">
+          <h1 class="section__title">Report a Campus Issue<span class="spine-dot">.</span></h1>
+        </div>
+        <div class="grid grid--2" style="align-items:start">
+          <div class="form-card">
+            <form id="reportForm" novalidate>
+              <div class="field">
+                <label for="issueCat">Category</label>
+                <select id="issueCat">
+                  <option>Hostel</option><option>Mess</option><option>Academic</option>
+                  <option>Administration</option><option>Infrastructure</option>
+                  <option>Scholarship</option><option>Library</option>
+                  <option>Transport</option><option>Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="issueTitle">Describe the issue</label>
+                <textarea id="issueTitle" placeholder="What's the problem, where, and since when?"></textarea>
+              </div>
+              <label class="check">
+                <input type="checkbox" id="issueAnon" checked/>
+                Submit anonymously — we won't record your name or ID.
+              </label>
+              <p class="form-note">Submissions are marked as <strong>Student Submission</strong> and are unverified until checked. Do not include personal data of others.</p>
+              <button class="btn btn--block" type="submit" style="margin-top:14px">Submit Report</button>
+            </form>
+          </div>
+          <div>
+            <div class="sources" style="border-left-color:var(--red)">
+              <h4>How tracking works</h4>
+              <p>Every report moves through five stages. You'll get a reference number to follow its status.</p>
+              <div class="pipeline" style="margin-top:14px">
+                <span class="pip done"><span class="pip__dot"></span><span class="pip__label">Reported</span></span>
+                <span class="pip__line done" style="background:var(--green)"></span>
+                <span class="pip"><span class="pip__dot"></span><span class="pip__label">Under Review</span></span>
+                <span class="pip__line"></span>
+                <span class="pip"><span class="pip__dot"></span><span class="pip__label">Authority Contacted</span></span>
+                <span class="pip__line"></span>
+                <span class="pip"><span class="pip__dot"></span><span class="pip__label">Action Taken</span></span>
+                <span class="pip__line"></span>
+                <span class="pip"><span class="pip__dot"></span><span class="pip__label">Resolved</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRACKER LIST -->
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title">Tracked Issues<span class="spine-dot">.</span></h2>
+        </div>
+        <div class="filters" id="issue-filters" role="group" aria-label="Filter by status">
+          <button class="filter" data-status="all" aria-pressed="true">All</button>
+          <button class="filter" data-status="Reported" aria-pressed="false">Reported</button>
+          <button class="filter" data-status="Under Review" aria-pressed="false">Under Review</button>
+          <button class="filter" data-status="Authority Contacted" aria-pressed="false">Authority Contacted</button>
+          <button class="filter" data-status="Action Taken" aria-pressed="false">Action Taken</button>
+          <button class="filter" data-status="Resolved" aria-pressed="false">Resolved</button>
+        </div>
+        <div class="grid" id="issue-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

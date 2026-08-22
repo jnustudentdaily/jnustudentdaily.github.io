@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- ===================== SEO: EDIT THESE PER SITE ===================== -->
+  <title>JNU Student Daily — Everything JNU Students Need to Know</title>
+  <meta name="description" content="Campus news, official notices, deadlines, events, opportunities and student issues for JNU students — updated daily. Demo build."/>
+  <link rel="canonical" href="https://your-domain.example/index.html"/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="JNU Student Daily"/>
+  <meta property="og:title" content="JNU Student Daily — Everything JNU Students Need to Know"/>
+  <meta property="og:description" content="Campus news, notices, events and opportunities for JNU students, updated daily."/>
+  <meta property="og:image" content="assets/img-academics.svg"/>
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="JNU Student Daily"/>
+  <meta name="twitter:description" content="Everything JNU students need to know, updated daily."/>
+  <!-- ================================================================== -->
+
+  <!-- Fonts: preconnect + a single display/serif pairing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- Site structured data -->
+  <script type="application/ld+json">
+  { "@context":"https://schema.org","@type":"NewsMediaOrganization",
+    "name":"JNU Student Daily","slogan":"Everything JNU Students Need to Know.",
+    "url":"https://your-domain.example/" }
+  </script>
+
+  <!-- >>> ADD GOOGLE ANALYTICS: paste your GA4 snippet here (see README). -->
+</head>
+<body data-page="home">
+  <header id="site-header"></header>
+
+  <main>
+    <!-- HERO / TOP STORIES -->
+    <section class="hero" id="hero" aria-label="Top stories"></section>
+
+    <!-- JNU TODAY -->
+    <section class="section" id="today" aria-label="JNU Today: notices and deadlines"></section>
+
+    <!-- BREAKING -->
+    <section class="section" id="breaking" aria-labelledby="breaking-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="breaking-h">Breaking JNU<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="search.html?q=">All updates ›</a>
+        </div>
+        <div class="grid grid--4" id="breaking-grid"></div>
+      </div>
+    </section>
+
+    <!-- ACADEMICS -->
+    <section class="section" id="academics" aria-labelledby="acad-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="acad-h">Academics<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="search.html?q=academics">More ›</a>
+        </div>
+        <div class="grid grid--3" id="academics-grid"></div>
+      </div>
+    </section>
+
+    <!-- ADMISSION & CAREER -->
+    <section class="section" id="admissions" aria-labelledby="adm-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="adm-h">Admission &amp; Career<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="search.html?q=admissions">More ›</a>
+        </div>
+        <div class="grid grid--3" id="admissions-grid"></div>
+      </div>
+    </section>
+
+    <!-- HOSTEL & CAMPUS -->
+    <section class="section" id="hostel" aria-labelledby="hostel-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="hostel-h">Hostel &amp; Campus<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="search.html?q=hostel">More ›</a>
+        </div>
+        <div class="grid grid--3" id="hostel-grid"></div>
+      </div>
+    </section>
+    <div id="campus"></div>
+
+    <!-- OPPORTUNITIES -->
+    <section class="section" id="opportunities" aria-labelledby="opp-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="opp-h">Opportunities<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="search.html?q=fellowship">More ›</a>
+        </div>
+        <div class="grid grid--4" id="opportunities-grid"></div>
+      </div>
+    </section>
+
+    <!-- JNU ISSUES -->
+    <section class="section" id="issues" aria-labelledby="iss-h">
+      <div class="wrap">
+        <div class="report-cta">
+          <div>
+            <h3>Something broken on campus?</h3>
+            <p>Report a hostel, mess, academic or infrastructure issue — anonymously if you prefer — and track it from Reported to Resolved.</p>
+          </div>
+          <a class="btn" href="issues.html#report">Report a Campus Issue</a>
+        </div>
+        <div class="section__head">
+          <h2 class="section__title" id="iss-h">Issue Tracker<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="issues.html">All issues ›</a>
+        </div>
+        <div class="grid" id="issues-grid"></div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events" aria-labelledby="ev-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="ev-h">Events<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="events.html">Full calendar ›</a>
+        </div>
+        <div class="grid grid--2" id="events-grid"></div>
+      </div>
+    </section>
+
+    <!-- JNU EXPLAINED -->
+    <section class="section" id="explainers" aria-labelledby="exp-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="exp-h">JNU Explained<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="search.html?q=explainer">More ›</a>
+        </div>
+        <div class="grid grid--3" id="explainers-grid"></div>
+      </div>
+    </section>
+
+    <!-- STUDENT VOICES -->
+    <section class="section" id="voices" aria-labelledby="voi-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="voi-h">Student Voices<span class="spine-dot">.</span></h2>
+          <a class="section__more" href="about.html#submit">Share yours ›</a>
+        </div>
+        <div class="grid grid--2" id="voices-grid"></div>
+      </div>
+    </section>
+
+    <!-- ALERTS / NEWSLETTER -->
+    <section class="section" id="alerts" aria-labelledby="al-h">
+      <div class="wrap">
+        <div class="alerts">
+          <div class="alerts__grid">
+            <div>
+              <h2 id="al-h">Get JNU Alerts<span style="color:var(--red)">.</span></h2>
+              <p>One short daily digest. Pick the alerts you care about — no spam, unsubscribe anytime.</p>
+              <div class="chips" role="group" aria-label="Alert topics">
+                <button class="chip" aria-pressed="false">Admissions</button>
+                <button class="chip" aria-pressed="false">Exams</button>
+                <button class="chip" aria-pressed="false">Hostel</button>
+                <button class="chip" aria-pressed="false">Scholarships</button>
+                <button class="chip" aria-pressed="false">Events</button>
+                <button class="chip" aria-pressed="false">Breaking News</button>
+                <button class="chip" aria-pressed="false">Opportunities</button>
+              </div>
+            </div>
+            <div>
+              <!-- No <form> nesting issues; JS handles submit. -->
+              <form id="alertForm" class="alerts__form" novalidate>
+                <input type="email" required placeholder="your.name@student.jnu.ac.in" aria-label="Email address"/>
+                <button class="btn" type="submit">Subscribe</button>
+              </form>
+              <p class="form-note">Demo only — connect a mailing provider to go live (see README).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK LINKS -->
+    <section class="section" id="quick" aria-labelledby="q-h">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title" id="q-h">Quick Links<span class="spine-dot">.</span></h2>
+        </div>
+        <div class="quicklinks" id="quicklinks"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
