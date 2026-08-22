@@ -1,5 +1,5 @@
 /* ============================================================================
-   JNU STUDENT DAILY — APP LOGIC
+   JNU INSIGHT — APP LOGIC
    Vanilla JS. No frameworks, no build step. Reads everything from data.js
    via the window.JSD.* async functions, so swapping in a real backend never
    touches this file.
@@ -181,7 +181,7 @@
       <div class="masthead">
         <div class="wrap masthead__bar">
           <a class="brand" href="index.html" aria-label="${esc(site.name)} home">
-            <span class="brand__name">JNU <span class="accent">Student</span> Daily</span>
+            <span class="brand__name">JNU <span class="accent">Insight</span></span>
             <span class="brand__tag">${esc(site.tagline)}</span>
           </a>
           <nav class="nav" aria-label="Primary">${navHtml}</nav>
@@ -201,7 +201,7 @@
     document.body.insertAdjacentHTML("beforeend", `
       <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
         <div class="search-panel">
-          <input id="searchInput" type="search" placeholder="Search JNU Student Daily…" autocomplete="off" aria-label="Search query"/>
+          <input id="searchInput" type="search" placeholder="Search JNU Insight…" autocomplete="off" aria-label="Search query"/>
           <div class="search-results" id="searchResults"></div>
         </div>
       </div>
@@ -257,8 +257,8 @@
       <div class="wrap">
         <div class="footer__grid">
           <div class="footer__brand">
-            <span class="brand__name">JNU <span class="accent" style="color:var(--red)">Student</span> Daily</span>
-            <p>${esc(site.tagline)} An independent student-run information platform. Demo build.</p>
+            <span class="brand__name">JNU <span class="accent" style="color:var(--red)">Insight</span></span>
+            <p>${esc(site.tagline)} An independent student-run information platform.</p>
             <div class="footer__social">
               ${s("Instagram", soc.instagram)}${s("Twitter", soc.twitter)}${s("Telegram", soc.telegram)}${s("YouTube", soc.youtube)}
             </div>
@@ -293,7 +293,7 @@
           </div>
         </div>
         <div class="footer__bar">
-          <span>© ${new Date().getFullYear()} JNU Student Daily · Demo. Not affiliated with Jawaharlal Nehru University.</span>
+          <span>© ${new Date().getFullYear()} JNU Insight · Not affiliated with Jawaharlal Nehru University.</span>
           <span>Built with HTML, CSS &amp; vanilla JS.</span>
         </div>
       </div>`;
@@ -423,7 +423,7 @@
     const endH = String((parseInt(hh || "9", 10) + 1)).padStart(2, "0");
     const end = `${dt}T${endH}${(mm||"00").padStart(2,"0")}00`;
     const ics = [
-      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//JNU Student Daily//EN","BEGIN:VEVENT",
+      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//JNU Insight//EN","BEGIN:VEVENT",
       `UID:${ev.id}@jnustudentdaily`, `DTSTART:${start}`, `DTEND:${end}`,
       `SUMMARY:${ev.title}`, `LOCATION:${ev.venue}`, `DESCRIPTION:${ev.description} (${ev.organizer})`,
       "END:VEVENT","END:VCALENDAR"
@@ -656,7 +656,7 @@
       return;
     }
     // SEO: fill meta + structured data at runtime.
-    document.title = `${a.title} · JNU Student Daily`;
+    document.title = `${a.title} · JNU Insight`;
     setMeta("description", a.summary);
     setMeta("og:title", a.title, "property");
     setMeta("og:description", a.summary, "property");
@@ -747,7 +747,7 @@
       headline: a.title, description: a.summary, image: [a.image],
       datePublished: a.published, dateModified: a.updated,
       author: { "@type": "Person", name: a.author },
-      publisher: { "@type": "Organization", name: "JNU Student Daily" },
+      publisher: { "@type": "Organization", name: "JNU Insight" },
       articleSection: a.category
     };
     const s = document.createElement("script");
