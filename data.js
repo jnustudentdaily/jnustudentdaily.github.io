@@ -48,7 +48,7 @@ const DATA = {
       youtube: "#"
     },
     // >>> CHANGE COLORS in style.css (:root variables), not here.
-    demoBanner: true // set false to hide the "DEMO CONTENT" ribbon
+    demoBanner: false // set false to hide the "DEMO CONTENT" ribbon
   },
 
   /* ---- BREAKING TICKER --------------------------------------------------
