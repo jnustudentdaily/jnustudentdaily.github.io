@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="STUDENT VOICES — demo image">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B23A48"/>
+      <stop offset="1" stop-color="#16130F"/>
+    </linearGradient>
+    <pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="#ffffff" stroke-opacity="0.06" stroke-width="18"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="450" fill="url(#g)"/>
+  <rect width="800" height="450" fill="url(#p)"/>
+  <rect x="0" y="0" width="12" height="450" fill="#D22B1C"/>
+  <text x="40" y="410" font-family="Archivo, sans-serif" font-size="34" font-weight="800" fill="#ffffff" opacity="0.95" letter-spacing="1">STUDENT VOICES</text>
+  <text x="40" y="60" font-family="Archivo, sans-serif" font-size="16" font-weight="700" fill="#ffffff" opacity="0.5" letter-spacing="2">JNU STUDENT DAILY · DEMO</text>
+</svg>
