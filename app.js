@@ -15,6 +15,18 @@
   const { getArticles, getNotices, getEvents, getOpportunities, getIssues,
           getTicker, getQuickLinks, getSite, getArticleById } = window.JSD;
 
+  /* ---- IMAGE SAFETY NET -------------------------------------------------
+     If ANY image fails to load (missing file, broken Sheet link, typo),
+     swap it once for a built-in placeholder so a torn-icon never shows. */
+  const FALLBACK_IMG = "assets/img-campus.svg";
+  document.addEventListener("error", (e) => {
+    const el = e.target;
+    if (el && el.tagName === "IMG" && !el.dataset.fallbackApplied) {
+      el.dataset.fallbackApplied = "1";
+      el.src = FALLBACK_IMG;
+    }
+  }, true); // capture phase: image error events don't bubble
+
   /* ---- 1. HELPERS -------------------------------------------------------- */
   const $  = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
