@@ -308,7 +308,7 @@ function _resolve(value) {
   return new Promise((res) => setTimeout(() => res(structuredClone(value)), 0));
 }
 
-async function getArticles()      { return _resolve(DATA.articles); }
+async function getArticles()      { return _liveArticles(); }
 async function getNotices()       { return _resolve(DATA.notices); }
 async function getEvents()        { return _resolve(DATA.events); }
 async function getOpportunities() { return _resolve(DATA.opportunities); }
@@ -321,20 +321,67 @@ async function getArticleById(id) {
   return list.find((a) => a.id === id) || null;
 }
 
-/*
-  >>> EXAMPLE: connecting Google Sheets later (published as CSV or via API).
-      Replace getArticles() with something like:
+/* ============================================================================
+   GOOGLE SHEETS PUBLISHING  —  articles come from your live Sheet.
+   Publish a new article by adding a row in the Sheet. No code, no re-upload.
 
-      async function getArticles() {
-        const url = "https://docs.google.com/spreadsheets/d/<SHEET_ID>/gviz/tq?tqx=out:json&sheet=articles";
-        const res = await fetch(url);
-        const text = await res.text();
-        const json = JSON.parse(text.substring(47).slice(0, -2)); // strip gviz wrapper
-        return json.table.rows.map(rowToArticle); // you write rowToArticle()
-      }
+   Sheet must be shared "Anyone with the link → Viewer" and have these column
+   headers in row 1, in any order:
+     id | tier | title | dek | category | image | author | date | body | sources | demo
 
-      Everything else on the site keeps working unchanged. See README.md.
-*/
+   To use a different Sheet later, change SHEET_ID / SHEET_TAB below.
+============================================================================ */
+
+const SHEET_ID  = "1d04K3-67U8NS-DrO0tmNKFP9hvcXhDy2Qb8ZJqzEc_U";
+const SHEET_TAB = "0"; // the gid of the tab that holds articles
+
+// Turns one Sheet row (keyed by header name) into an article object.
+function _rowToArticle(cells, cols) {
+  const get = (name) => {
+    const i = cols.indexOf(name);
+    const c = i > -1 ? cells[i] : null;
+    return c && c.v != null ? String(c.v).trim() : "";
+  };
+  const rawSources = get("sources");
+  const rawDemo = get("demo").toLowerCase();
+  return {
+    id:       get("id"),
+    tier:     get("tier") || "reported",
+    title:    get("title"),
+    dek:      get("dek"),
+    category: get("category") || "News",
+    image:    get("image") || "assets/img-campus.svg",
+    author:   get("author") || "JNU Student Daily",
+    date:     get("date"),
+    body:     get("body"),
+    sources:  rawSources ? rawSources.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean) : [],
+    demo:     rawDemo === "true" || rawDemo === "yes" || rawDemo === "1"
+  };
+}
+
+// Fetches live articles from the Sheet; falls back to built-in DATA.articles
+// if the Sheet is unreachable or empty, so the site NEVER shows a blank page.
+async function _liveArticles() {
+  const url = "https://docs.google.com/spreadsheets/d/" + SHEET_ID +
+              "/gviz/tq?tqx=out:json&tq&gid=" + SHEET_TAB;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const text = await res.text();
+    // Google wraps the JSON in "...(<json>);" — strip that wrapper.
+    const json = JSON.parse(text.replace(/^[^(]*\(/, "").replace(/\);?\s*$/, ""));
+    const cols = json.table.cols.map((c) => (c.label || "").trim().toLowerCase());
+    const rows = json.table.rows || [];
+    const articles = rows
+      .map((r) => _rowToArticle(r.c || [], cols))
+      .filter((a) => a.id && a.title); // skip blank rows
+    if (!articles.length) throw new Error("Sheet returned no usable rows");
+    return articles;
+  } catch (err) {
+    console.warn("[JSD] Sheet fetch failed, using built-in articles:", err.message);
+    return structuredClone(DATA.articles);
+  }
+}
 
 // Expose to non-module scripts.
 window.JSD = {
