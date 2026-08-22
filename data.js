@@ -336,6 +336,7 @@ const SHEET_ID  = "1d04K3-67U8NS-DrO0tmNKFP9hvcXhDy2Qb8ZJqzEc_U";
 const SHEET_TAB = "0"; // the gid of the tab that holds articles
 
 // Turns one Sheet row (keyed by header name) into an article object.
+// Fills EVERY field the site expects, so partial rows never crash a page.
 function _rowToArticle(cells, cols) {
   const get = (name) => {
     const i = cols.indexOf(name);
@@ -344,17 +345,28 @@ function _rowToArticle(cells, cols) {
   };
   const rawSources = get("sources");
   const rawDemo = get("demo").toLowerCase();
+  const bodyText = get("body");
+  const dateStr = get("date");
+  const wordCount = bodyText ? bodyText.split(/\s+/).length : 0;
   return {
     id:       get("id"),
     tier:     get("tier") || "reported",
     title:    get("title"),
     dek:      get("dek"),
+    summary:  get("dek"),                              // article page reads .summary
     category: get("category") || "News",
     image:    get("image") || "assets/img-campus.svg",
     author:   get("author") || "JNU Student Daily",
-    date:     get("date"),
-    body:     get("body"),
+    date:     dateStr,
+    published: dateStr,                                // article page reads .published
+    updated:   dateStr,                                // and .updated
+    // body must be an ARRAY of paragraphs; split the cell on blank lines.
+    body:     bodyText ? bodyText.split(/\n\s*\n|\n/).map((p) => p.trim()).filter(Boolean) : [],
+    source:   rawSources ? rawSources.split(/[\n,]+/)[0].trim() : "Student submission",
     sources:  rawSources ? rawSources.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean) : [],
+    tags:     [get("category").toLowerCase()].filter(Boolean),
+    featured: false,
+    readingTimeMin: Math.max(1, Math.round(wordCount / 200)),
     demo:     rawDemo === "true" || rawDemo === "yes" || rawDemo === "1"
   };
 }
